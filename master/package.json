@@ -1,7 +1,7 @@
 {
-  "name": "码农帮",
-  "version": "0.0.1",
-  "description": "码农帮 - 互联网兼职预约神器",
+  "name": "Angle",
+  "version": "0.0.0",
+  "description": "Angle - Bootstrap Admin App + AngularJS",
   "author": "@themicon_co",
   "dependencies": {},
   "devDependencies": {
