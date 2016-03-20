@@ -17,16 +17,8 @@ var App = angular.module('angle', [
     'ngRoute',
     'ngAnimate',
     'ngStorage',
-    'ngCookies',
-    'pascalprecht.translate',
-    'ui.bootstrap',
     'ui.router',
-    'oc.lazyLoad',
-    'cfp.loadingBar',
-    'ngSanitize',
-    'ngResource',
-    'tmh.dynamicLocale',
-    'ui.utils'
+    'oc.lazyLoad'
   ]);
 
 App.run(["$rootScope", "$state", "$stateParams",  '$window', '$templateCache', function ($rootScope, $state, $stateParams, $window, $templateCache) {
