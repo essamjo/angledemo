@@ -37,8 +37,8 @@ App.run(["$rootScope", "$state", "$stateParams",  '$window', '$templateCache', f
   // Scope Globals
   // ----------------------------------- 
   $rootScope.app = {
-    name: 'Angle',
-    description: 'Angular Bootstrap Admin Template',
+    name: '码农帮',
+    description: '互联网兼职预约神器',
     year: ((new Date()).getFullYear()),
     layout: {
       isFixed: true,
@@ -53,11 +53,6 @@ App.run(["$rootScope", "$state", "$stateParams",  '$window', '$templateCache', f
     useFullLayout: false,
     hiddenFooter: false,
     viewAnimation: 'ng-fadeInUp'
-  };
-  $rootScope.user = {
-    name:     'John',
-    job:      'ng-developer',
-    picture:  'app/img/user/02.jpg'
   };
 
 }]);

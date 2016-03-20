@@ -3,8 +3,8 @@
  * App routes and resources configuration
  =========================================================*/
 
-App.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider',
-function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+App.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 
+function ($stateProvider, $locationProvider, $urlRouterProvider) {
   'use strict';
 
   // Set the following to true to enable the HTML5 Mode
@@ -12,7 +12,7 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
   $locationProvider.html5Mode(false);
 
   // defaults to dashboard
-  $urlRouterProvider.otherwise('/app/dashboard');
+  $urlRouterProvider.otherwise('/page/index');
 
   // 
   // Application Routes
@@ -21,6 +21,11 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
     .state('page', {
         url: '/page',
         templateUrl: 'app/pages/page.html'
+    })
+    .state('page.index', {
+        url: '/index',
+        title: "index",
+        templateUrl: 'app/pages/index.html'
     })
     .state('page.login', {
         url: '/login',
@@ -37,10 +42,10 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
         title: "Recover",
         templateUrl: 'app/pages/recover.html'
     })
-    .state('page.lock', {
-        url: '/lock',
-        title: "Lock",
-        templateUrl: 'app/pages/lock.html'
+    .state('page.chosePost', {
+        url: '/chosePost',
+        title: "选择职位",
+        templateUrl: 'app/pages/chosePost.html'
     })
     .state('page.404', {
         url: '/404',
