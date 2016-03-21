@@ -1,4 +1,6 @@
 @charset "UTF-8";
+.my-content{padding-bottom: 55px;}
+
 .my-header {
     background: url('../img/mybg.png') no-repeat;
     background-size: cover;
@@ -51,3 +53,10 @@
 .aui-list-view-cell {
     line-height: 26px;
 }
+
+.whitebgbox{background: #fff;}
+
+.secPost .aui-btn{margin-top: 5px;margin-bottom: 5px;}
+.postFirst{height: 100%;}
+.postFirst .cur{border-left: 3px solid #00BEAF;color: #00BEAF;}
+.secPost{padding-left: 10px;}
