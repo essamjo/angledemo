@@ -27,6 +27,16 @@ function ($stateProvider, $locationProvider, $urlRouterProvider) {
         title: "index",
         templateUrl: 'app/pages/index.html'
     })
+    .state('page.order', {
+        url: '/order',
+        title: "order",
+        templateUrl: 'app/pages/order.html'
+    })
+    .state('page.myinfo', {
+        url: '/myinfo',
+        title: "myinfo",
+        templateUrl: 'app/pages/myinfo.html'
+    })
     .state('page.login', {
         url: '/login',
         title: "Login",
@@ -42,7 +52,7 @@ function ($stateProvider, $locationProvider, $urlRouterProvider) {
         title: "Recover",
         templateUrl: 'app/pages/recover.html'
     })
-    .state('page.chosePost', {
+    .state('chosePost', {
         url: '/chosePost',
         title: "选择职位",
         templateUrl: 'app/pages/chosePost.html'

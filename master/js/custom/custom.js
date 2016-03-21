@@ -4,7 +4,7 @@
 // angle to myAppName
 // ----------------------------------- 
 
-var myApp = angular.module('myAppName', ['angle']);
+var myApp = angular.module('myAppName', ['mnb']);
 
 myApp.run(["$log", function($log) {
 
