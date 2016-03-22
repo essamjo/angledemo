@@ -52,10 +52,25 @@ function ($stateProvider, $locationProvider, $urlRouterProvider) {
         title: "Recover",
         templateUrl: 'app/pages/recover.html'
     })
-    .state('chosePost', {
+    .state('wantmn', {
+        url: '/wantmn',
+        title: "发布需求",
+        templateUrl: 'app/pages/wantmn.html'
+    })
+    .state('wantmn.chosePost', {
         url: '/chosePost',
-        title: "选择职位",
+        title: "选择岗位",
         templateUrl: 'app/pages/chosePost.html'
+    })
+    .state('wantmn.selectAddress', {
+        url: '/selectAddress',
+        title: "选择地址",
+        templateUrl: 'app/pages/selectAddress.html'
+    })
+    .state('wantmn.manageAddress', {
+        url: '/manageAddress',
+        title: "地址管理",
+        templateUrl: 'app/pages/manageAddress.html'
     })
     .state('page.404', {
         url: '/404',

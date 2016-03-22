@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.my-content{padding-bottom: 55px;}
+.my-content{padding-bottom: 65px;}
 
 .my-header {
     background: url('../img/mybg.png') no-repeat;
@@ -60,3 +60,6 @@
 .postFirst{height: 100%;}
 .postFirst .cur{border-left: 3px solid #00BEAF;color: #00BEAF;}
 .secPost{padding-left: 10px;}
+
+.toselectDate{text-align: center;padding: 10px;}
+.toselectDate .aui-btn-block{padding: 10px 0;margin-top: 10px;}
