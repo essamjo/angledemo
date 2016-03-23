@@ -3,8 +3,8 @@
  * App routes and resources configuration
  =========================================================*/
 
-App.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 
-function ($stateProvider, $locationProvider, $urlRouterProvider) {
+App.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider',
+function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
   'use strict';
 
   // Set the following to true to enable the HTML5 Mode
@@ -71,6 +71,12 @@ function ($stateProvider, $locationProvider, $urlRouterProvider) {
         url: '/manageAddress',
         title: "地址管理",
         templateUrl: 'app/pages/manageAddress.html'
+    })
+    .state('wantmn.peopleTime', {
+        url: '/peopleTime',
+        title: "选择时间",
+        templateUrl: 'app/pages/peopleTime.html',
+        resolve: helper.resolveFor('aui-calendar')
     })
     .state('page.404', {
         url: '/404',

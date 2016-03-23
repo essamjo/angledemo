@@ -62,8 +62,8 @@ App.run(["$rootScope", "$state", "$stateParams",  '$window', '$templateCache', f
  * App routes and resources configuration
  =========================================================*/
 
-App.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 
-function ($stateProvider, $locationProvider, $urlRouterProvider) {
+App.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider',
+function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
   'use strict';
 
   // Set the following to true to enable the HTML5 Mode
@@ -130,6 +130,12 @@ function ($stateProvider, $locationProvider, $urlRouterProvider) {
         url: '/manageAddress',
         title: "地址管理",
         templateUrl: 'app/pages/manageAddress.html'
+    })
+    .state('wantmn.peopleTime', {
+        url: '/peopleTime',
+        title: "选择时间",
+        templateUrl: 'app/pages/peopleTime.html',
+        resolve: helper.resolveFor('aui-calendar')
     })
     .state('page.404', {
         url: '/404',
@@ -212,7 +218,10 @@ App
   .constant('APP_REQUIRES', {
     // jQuery based and standalone scripts
     scripts: {
-      'animate':            ['vendor/animate.css/animate.min.css']
+      'animate':            ['vendor/animate.css/animate.min.css'],
+      'aui-calendar':       ['vendor/aui-calendar/aui-calendar.css',
+                             'vendor/aui-calendar/aui-calendar.js',
+                             'vendor/aui-calendar/aui-tap.js']
      
     },
     // Angular based script (use the right module name)
@@ -303,6 +312,72 @@ App.controller('RegisterFormController', ['$scope', '$http', '$state', function(
   };
 
 }]);
+
+/**=========================================================
+ * Module: helpers.js
+ * Provides helper functions for routes definition
+ =========================================================*/
+
+App.provider('RouteHelpers', ['APP_REQUIRES', function (appRequires) {
+  "use strict";
+
+  // Set here the base of the relative path
+  // for all app views
+  this.basepath = function (uri) {
+    return 'app/views/' + uri;
+  };
+
+  // Generates a resolve object by passing script names
+  // previously configured in constant.APP_REQUIRES
+  this.resolveFor = function () {
+    var _args = arguments;
+    return {
+      deps: ['$ocLazyLoad','$q', function ($ocLL, $q) {
+        // Creates a promise chain for each argument
+        var promise = $q.when(1); // empty promise
+        for(var i=0, len=_args.length; i < len; i ++){
+          promise = andThen(_args[i]);
+        }
+        return promise;
+
+        // creates promise to chain dynamically
+        function andThen(_arg) {
+          // also support a function that returns a promise
+          if(typeof _arg == 'function')
+              return promise.then(_arg);
+          else
+              return promise.then(function() {
+                // if is a module, pass the name. If not, pass the array
+                var whatToLoad = getRequired(_arg);
+                // simple error check
+                if(!whatToLoad) return $.error('Route resolve: Bad resource name [' + _arg + ']');
+                // finally, return a promise
+                return $ocLL.load( whatToLoad );
+              });
+        }
+        // check and returns required data
+        // analyze module items with the form [name: '', files: []]
+        // and also simple array of script files (for not angular js)
+        function getRequired(name) {
+          if (appRequires.modules)
+              for(var m in appRequires.modules)
+                  if(appRequires.modules[m].name && appRequires.modules[m].name === name)
+                      return appRequires.modules[m];
+          return appRequires.scripts && appRequires.scripts[name];
+        }
+
+      }]};
+  }; // resolveFor
+
+  // not necessary, only used in config block for routes
+  this.$get = function(){
+    return {
+      basepath: this.basepath
+    }
+  };
+
+}]);
+
 
 // To run this code, edit file 
 // index.html or index.jade and change

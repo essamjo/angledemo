@@ -30,7 +30,10 @@ App
   .constant('APP_REQUIRES', {
     // jQuery based and standalone scripts
     scripts: {
-      'animate':            ['vendor/animate.css/animate.min.css']
+      'animate':            ['vendor/animate.css/animate.min.css'],
+      'aui-calendar':       ['vendor/aui-calendar/aui-calendar.css',
+                             'vendor/aui-calendar/aui-calendar.js',
+                             'vendor/aui-calendar/aui-tap.js']
      
     },
     // Angular based script (use the right module name)

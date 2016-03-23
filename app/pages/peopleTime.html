@@ -1,0 +1,75 @@
+<header class="aui-bar aui-bar-nav aui-bar-warning">
+    <a class="aui-pull-left" ui-sref='wantmn.chosePost'>
+        <span class="aui-iconfont aui-icon-left"></span>返回
+    </a>
+    <div class="aui-title">服务时间</div>
+</header>
+    <ul class="aui-list-view" style="margin-top:10px;">
+        <li class="aui-list-view-cell">
+            <a class="aui-arrow-right">
+            <i class="aui-iconfont aui-icon-edit" style="color:#ccc;"></i>预约牛人数量
+            <span class="aui-badge">1</span>
+            </a>
+        </li>
+    </ul>
+    <div class="whitebgbox">
+         <div class="aui-content year-list">
+            <div class="">
+                <div class="aui-col-xs-3">
+                    <div class="year active" data-status="1" tapmode>不限</div>
+                </div>
+                <div class="aui-col-xs-3">
+                    <div class="year" data-status="1" tapmode>上午</div>
+                </div>    
+                <div class="aui-col-xs-3">
+                    <div class="year"  data-status="1" tapmode>下午</div>
+                </div>    
+                <div class="aui-col-xs-3">
+                    <div class="year"  data-status="1" tapmode>晚上</div>
+                </div>    
+                <div class="aui-col-xs-3">
+                    <div class="year" data-status="1" tapmode>周末</div>
+                </div>  
+            </div>
+        </div>
+
+    </div>
+<div id="calendar" class="aui-content aui-calendar"></div>
+<script type="text/javascript">
+    
+        /**
+        * 日历
+        * $aui.calendar(el,opts,callback);
+        * startDate = '2016-03-20'开始日期，不传时为今天，当没有天传入时，默认从当月开始日期
+        * endDate = '2016-04-28' 结束日期
+        * beforeStartDateClick 默认false，开始日期之前的当月是否允许点击
+        * 当开始日期和结束日期都为空时,默认显示当月日历
+        * 返回数据为点击某天后结果，格式 {status:'success',date:'2016-01-01'}
+        **
+        $aui.calendar($api.byId("calendar"),{
+            startDate:'2016-03',
+            endDate:'2016-08',
+            beforeStartDateClick : false
+        },function(ret){
+            if(ret){
+                // 返回点击的日期
+                // alert(JSON.stringify(ret));
+            }
+        })
+        */
+        var todayDate = new Date();
+        var startDate = todayDate.getFullYear()+'-'+(todayDate.getMonth()+1)+'-'+todayDate.getDate();
+        var endDate = (todayDate.getFullYear())+'-'+(todayDate.getMonth()+5);
+
+        $aui.calendar(document.getElementById('calendar'),{
+            startDate : startDate,
+            endDate : endDate,
+            beforeStartDateClick : false // 是否允许开始日期之前的可以点击，默认为false
+        },function(ret){
+            if(ret){
+                // 返回点击的日期
+                alert(JSON.stringify(ret));
+            }
+        })
+   
+</script>

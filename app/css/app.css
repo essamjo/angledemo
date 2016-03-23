@@ -63,3 +63,35 @@
 
 .toselectDate{text-align: center;padding: 10px;}
 .toselectDate .aui-btn-block{padding: 10px 0;margin-top: 10px;}
+
+ .year-list {
+            background: none;
+            text-align: center;
+            overflow: hidden;
+            padding:10px 5px;
+        }
+        .year {
+            text-align: center;
+            font-size: 12px;
+            margin: 0 5px;
+            background: #fff;
+            height: 32px;
+            line-height: 32px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .year.active {
+            background: #ff9900;
+            border: 1px solid #ff9900;
+            color: #ffffff;
+            -webkit-animation: fadeIn .5s ease both;
+                    animation: fadeIn .5s ease both;
+        }
+        .year.disabled{
+            background: #eeeeee;
+            border-color: #eeeeee;
+            color: #666;
+        }
