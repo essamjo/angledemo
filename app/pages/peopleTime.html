@@ -1,40 +1,45 @@
-<header class="aui-bar aui-bar-nav aui-bar-warning">
-    <a class="aui-pull-left" ui-sref='wantmn.chosePost'>
-        <span class="aui-iconfont aui-icon-left"></span>返回
-    </a>
-    <div class="aui-title">服务时间</div>
-</header>
-    <ul class="aui-list-view" style="margin-top:10px;">
-        <li class="aui-list-view-cell">
-            <a class="aui-arrow-right">
-            <i class="aui-iconfont aui-icon-edit" style="color:#ccc;"></i>预约牛人数量
-            <span class="aui-badge">1</span>
-            </a>
-        </li>
-    </ul>
-    <div class="whitebgbox">
-         <div class="aui-content year-list">
-            <div class="">
-                <div class="aui-col-xs-3">
-                    <div class="year active" data-status="1" tapmode>不限</div>
+<div class="my-content">
+    <header class="aui-bar aui-bar-nav aui-bar-warning">
+        <a class="aui-pull-left" ui-sref='wantmn.chosePost'>
+            <span class="aui-iconfont aui-icon-left"></span>返回
+        </a>
+        <div class="aui-title">服务时间</div>
+    </header>
+        <ul class="aui-list-view" style="margin-top:10px;">
+            <li class="aui-list-view-cell">
+                <a class="aui-arrow-right">
+                <i class="aui-iconfont aui-icon-edit" style="color:#ccc;"></i>预约牛人数量
+                <span class="aui-badge">1</span>
+                </a>
+            </li>
+        </ul>
+        <div class="whitebgbox">
+             <div class="aui-content year-list">
+                <div class="">
+                    <div class="aui-col-xs-3">
+                        <div class="year active" data-status="1" tapmode>不限</div>
+                    </div>
+                    <div class="aui-col-xs-3">
+                        <div class="year" data-status="1" tapmode>上午</div>
+                    </div>    
+                    <div class="aui-col-xs-3">
+                        <div class="year"  data-status="1" tapmode>下午</div>
+                    </div>    
+                    <div class="aui-col-xs-3">
+                        <div class="year"  data-status="1" tapmode>晚上</div>
+                    </div>    
+                    <div class="aui-col-xs-3">
+                        <div class="year" data-status="1" tapmode>周末</div>
+                    </div>  
                 </div>
-                <div class="aui-col-xs-3">
-                    <div class="year" data-status="1" tapmode>上午</div>
-                </div>    
-                <div class="aui-col-xs-3">
-                    <div class="year"  data-status="1" tapmode>下午</div>
-                </div>    
-                <div class="aui-col-xs-3">
-                    <div class="year"  data-status="1" tapmode>晚上</div>
-                </div>    
-                <div class="aui-col-xs-3">
-                    <div class="year" data-status="1" tapmode>周末</div>
-                </div>  
             </div>
-        </div>
 
-    </div>
-<div id="calendar" class="aui-content aui-calendar"></div>
+        </div>
+    <div id="calendar" class="aui-content aui-calendar"></div>
+    <footer class="aui-nav" id="aui-footer">
+        <div class="aui-btn aui-btn-info aui-btn-block">确定服务时间</div>
+    </footer>
+</div>    
 <script type="text/javascript">
     
         /**
@@ -67,6 +72,7 @@
             beforeStartDateClick : false // 是否允许开始日期之前的可以点击，默认为false
         },function(ret){
             if(ret){
+                console.log(ret.date)
                 // 返回点击的日期
                 alert(JSON.stringify(ret));
             }
