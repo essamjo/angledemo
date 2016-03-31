@@ -7,13 +7,13 @@
     <div class="wrappost" ng-controller="postController">
         <div class=" aui-border-r postFirst">
             <ul class="">
-                <li ng-repeat="item in categoryItems" class="aui-border-b">{{item.text}}</li>                
+                <li ng-repeat="item in categoryItems" ng-class="{'cur':_selected==item.id}"   ng-click="changeCategory(item)">{{item.text}}</li>                
             </ul>
         </div>
         <div class="secPostCnt">
-            <div  id="wrapper" ng-iscroll='wrapper' ng-iscroll-click='true'>
+            <div  id="wrapper" ng-iscroll='wrapper'>
             	<div class="secPost">
-            		<div class="aui-btn aui-btn-outlined">Java</div>
+            		<div class="aui-btn aui-btn-outlined" >{{item.text}}</div>
             		<div class="aui-btn aui-btn-outlined" ui-sref="wantmn.selectAddress">C++</div>
             		<div class="aui-btn aui-btn-outlined">C#</div>
             		<div class="aui-btn aui-btn-outlined">搜索算法</div>

@@ -21,8 +21,8 @@ App.controller('wantmnController', ['$scope', '$http', '$state', function($scope
 
 App.controller('postController', ['$scope', '$http', '$state','$stateParams', function($scope, $http, $state, $stateParams) {
 
-     
-    console.log($stateParams.id);   
+    
+    // console.log($stateParams.id);   
     $scope.loadCategory = function() {
 
       var categoryJson = 'server/category.json',
@@ -30,22 +30,32 @@ App.controller('postController', ['$scope', '$http', '$state','$stateParams', fu
       $http.get(categoryURL)
         .success(function(items) {
            $scope.categoryItems = items;
-           console.log(items);
+           if($stateParams.id == null || $stateParams.id == ''){
+                $scope._selected = items[0].id;
+                console.log('id is null');   
+
+            }else{
+                $scope._selected = $stateParams.id;
+                console.log('id is not null');
+            }
+
         })
         .error(function(data, status, headers, config) {
-          alert('Failure loading menu');
+          alert('Failure loading category');
         });
      };
 
-     $scope.loadCategory();
-     console.log('$stateParams.id==='+$stateParams.id);
-     if($stateParams.id == null || $stateParams.id == ''){
-         //if($stateParams.id in $scope.categoryItems){
-            console.log('id is null');
-            $('.postFirst li').addClass('cur')
-         //}
-     }else{
-        console.log('id is not null');
-     }
+    $scope.loadCategory();
+
+    $scope.changeCategory = function(index){
+        $scope._selected = index.id;
+        console.log(index);
+        $('.secPost').html('');
+    }
+
+    //console.log('$stateParams.id==='+$stateParams.id);
+
+    
+
 }]);
 
