@@ -9,7 +9,7 @@ App.provider('RouteHelpers', ['APP_REQUIRES', function (appRequires) {
   // Set here the base of the relative path
   // for all app views
   this.basepath = function (uri) {
-    return 'app/views/' + uri;
+    return 'app/pages/' + uri;
   };
 
   // Generates a resolve object by passing script names

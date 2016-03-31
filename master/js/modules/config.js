@@ -24,17 +24,18 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
     })
     .state('page.index', {
         url: '/index',
-        title: "index",
+        title: "首页",
         templateUrl: 'app/pages/index.html'
     })
     .state('page.order', {
         url: '/order',
-        title: "order",
-        templateUrl: 'app/pages/order.html'
+        title: "我的订单",
+        templateUrl: 'app/pages/order.html',
+        resolve: helper.resolveFor('iScroll')
     })
     .state('page.myinfo', {
         url: '/myinfo',
-        title: "myinfo",
+        title: "我的",
         templateUrl: 'app/pages/myinfo.html'
     })
     .state('page.login', {
@@ -58,25 +59,62 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
         templateUrl: 'app/pages/wantmn.html'
     })
     .state('wantmn.chosePost', {
-        url: '/chosePost',
+        url: '/chosePost/:id',
         title: "选择岗位",
-        templateUrl: 'app/pages/chosePost.html'
+        templateUrl: 'app/pages/wmn_chosePost.html',
+        resolve: helper.resolveFor('iScroll')
     })
     .state('wantmn.selectAddress', {
         url: '/selectAddress',
         title: "选择地址",
-        templateUrl: 'app/pages/selectAddress.html'
+        templateUrl: 'app/pages/wmn_selectAddress.html'
     })
     .state('wantmn.manageAddress', {
         url: '/manageAddress',
         title: "地址管理",
-        templateUrl: 'app/pages/manageAddress.html'
+        templateUrl: 'app/pages/wmn_manageAddress.html'
     })
     .state('wantmn.peopleTime', {
         url: '/peopleTime',
         title: "选择时间",
-        templateUrl: 'app/pages/peopleTime.html',
+        templateUrl: 'app/pages/wmn_peopleTime.html',
         resolve: helper.resolveFor('aui-calendar')
+    })
+    .state('wantmn.confirmorder', {
+        url: '/confirmorder',
+        title: "确定订单",
+        templateUrl: 'app/pages/wmn_confirmorder.html'
+    })
+    .state('wantmn.changePeople', {
+        url: '/changePeople',
+        title: "选择牛人",
+        templateUrl: 'app/pages/wmn_changePeople.html'
+    })
+    .state('wantmn.toPay', {
+        url: '/toPay',
+        title: "确认支付",
+        templateUrl: 'app/pages/wmn_toPay.html'
+    })
+    .state('wantmn.payCallback', {
+        url: '/payCallback',
+        title: "预约状态",
+        templateUrl: 'app/pages/wmn_payCallback.html'
+    })
+    .state('orderdetail', {
+        url: '/orderdetail',
+        title: "订单详情",
+        templateUrl: 'app/pages/order-detail.html'
+    })
+    .state('orderdetail.status', {
+        url: '/status',
+        title: "订单状态",
+        templateUrl: 'app/pages/order-detail-status.html',
+        resolve: helper.resolveFor('iScroll')
+    })
+    .state('orderdetail.info', {
+        url: '/info',
+        title: "订单信息",
+        templateUrl: 'app/pages/order-detail-info.html'
     })
     .state('page.404', {
         url: '/404',

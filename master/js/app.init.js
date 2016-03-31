@@ -18,6 +18,7 @@ var App = angular.module('mnb', [
     'ngAnimate',
     'ngStorage',
     'ui.router',
+    'ng-iscroll',
     'oc.lazyLoad'
   ]);
 
@@ -54,5 +55,47 @@ App.run(["$rootScope", "$state", "$stateParams",  '$window', '$templateCache', f
     hiddenFooter: false,
     viewAnimation: 'ng-fadeInUp'
   };
+    //Hook start
+    $rootScope.$on('$stateChangeStart',
+      function(event, unfoundState, fromState, fromParams) {
+
+      });
+    // Hook not found
+    $rootScope.$on('$stateNotFound',
+      function(event, unfoundState, fromState, fromParams) {
+          console.log(unfoundState.to); // "lazy.state"
+          console.log(unfoundState.toParams); // {a:1, b:2}
+          console.log(unfoundState.options); // {inherit:false} + default options
+      });
+    // Hook error
+    $rootScope.$on('$stateChangeError',
+      function(event, toState, toParams, fromState, fromParams, error){
+        console.log(error);
+      });
+    // Hook success
+    $rootScope.$on('$stateChangeSuccess',
+      function(event, toState, toParams, fromState, fromParams) {
+        // display new view from top
+        $window.scrollTo(0, 0);
+        // Save the route title
+        $rootScope.currTitle = $state.current.title;
+
+        var $body = $('body')
+        document.title = $state.current.title;
+        // hack在微信等webview中无法修改document.title的情况
+         var $iframe = $('<iframe src="/favicon.ico"></iframe>').on('load', function() {
+           setTimeout(function() {
+             $iframe.off('load').remove()
+           }, 0)
+         }).appendTo($body)
+      });
+    $rootScope.currTitle = $state.current.title;
+    $rootScope.pageTitle = function() {
+      var title = $rootScope.app.name + ' - ' + ($rootScope.currTitle || $rootScope.app.description);
+      document.title = title;
+      console.log('title====='+title);
+      return title;
+    };
+
 
 }]);

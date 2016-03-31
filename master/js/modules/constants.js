@@ -33,7 +33,8 @@ App
       'animate':            ['vendor/animate.css/animate.min.css'],
       'aui-calendar':       ['vendor/aui-calendar/aui-calendar.css',
                              'vendor/aui-calendar/aui-calendar.js',
-                             'vendor/aui-calendar/aui-tap.js']
+                             'vendor/aui-calendar/aui-tap.js'],
+      'iScroll':            ['vendor/iScroll/iScroll.js']
      
     },
     // Angular based script (use the right module name)

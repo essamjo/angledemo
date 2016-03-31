@@ -1,0 +1,25 @@
+<!-- <header class="aui-bar aui-bar-nav aui-bar-warning">
+    <a class="aui-pull-left" ui-sref='page.index'>
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">选择岗位</div>
+</header> -->
+    <div class="wrappost" ng-controller="postController">
+        <div class=" aui-border-r postFirst">
+            <ul class="">
+                <li ng-repeat="item in categoryItems" class="aui-border-b">{{item.text}}</li>                
+            </ul>
+        </div>
+        <div class="secPostCnt">
+            <div  id="wrapper" ng-iscroll='wrapper' ng-iscroll-click='true'>
+            	<div class="secPost">
+            		<div class="aui-btn aui-btn-outlined">Java</div>
+            		<div class="aui-btn aui-btn-outlined" ui-sref="wantmn.selectAddress">C++</div>
+            		<div class="aui-btn aui-btn-outlined">C#</div>
+            		<div class="aui-btn aui-btn-outlined">搜索算法</div>
+            		<div class="aui-btn aui-btn-outlined">.NET</div>
+                    <div class="aui-btn aui-btn-outlined">Java</div>
+            	</div>
+            </div>
+        </div>
+    </div>

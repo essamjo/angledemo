@@ -1,0 +1,21 @@
+<header class="aui-bar aui-bar-nav aui-bar-warning">
+    <a class="aui-pull-left" ui-sref='wantmn.selectAddress'>
+        <span class="aui-iconfont aui-icon-left"></span>返回
+    </a>
+    <div class="aui-title">我的订单</div>
+    <a class="aui-pull-right" ui-sref="page.order" >历史订单</a>
+</header>
+<div class="my-content twoheadwrapper" ng-controller="orderDetailController">
+    <div class="aui-tab aui-tab-success">
+        <ul class="aui-tab-nav">
+            <li class="active" ui-sref="orderdetail.status">订单状态</li>
+            <li ui-sref="orderdetail.info">订单信息</li>
+        </ul>
+     </div>
+    <div ui-view></div>
+    <footer class="aui-nav" id="aui-footer" style="height:45px;">
+        <div class="aui-bg-info" style="overflow:hidden;">
+            <div class="aui-btn aui-btn-primary aui-btn-block">取消订单</div>
+        </div>
+    </footer>
+</div>

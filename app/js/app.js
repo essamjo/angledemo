@@ -18,6 +18,7 @@ var App = angular.module('mnb', [
     'ngAnimate',
     'ngStorage',
     'ui.router',
+    'ng-iscroll',
     'oc.lazyLoad'
   ]);
 
@@ -54,6 +55,48 @@ App.run(["$rootScope", "$state", "$stateParams",  '$window', '$templateCache', f
     hiddenFooter: false,
     viewAnimation: 'ng-fadeInUp'
   };
+    //Hook start
+    $rootScope.$on('$stateChangeStart',
+      function(event, unfoundState, fromState, fromParams) {
+
+      });
+    // Hook not found
+    $rootScope.$on('$stateNotFound',
+      function(event, unfoundState, fromState, fromParams) {
+          console.log(unfoundState.to); // "lazy.state"
+          console.log(unfoundState.toParams); // {a:1, b:2}
+          console.log(unfoundState.options); // {inherit:false} + default options
+      });
+    // Hook error
+    $rootScope.$on('$stateChangeError',
+      function(event, toState, toParams, fromState, fromParams, error){
+        console.log(error);
+      });
+    // Hook success
+    $rootScope.$on('$stateChangeSuccess',
+      function(event, toState, toParams, fromState, fromParams) {
+        // display new view from top
+        $window.scrollTo(0, 0);
+        // Save the route title
+        $rootScope.currTitle = $state.current.title;
+
+        var $body = $('body')
+        document.title = $state.current.title;
+        // hack在微信等webview中无法修改document.title的情况
+         var $iframe = $('<iframe src="/favicon.ico"></iframe>').on('load', function() {
+           setTimeout(function() {
+             $iframe.off('load').remove()
+           }, 0)
+         }).appendTo($body)
+      });
+    $rootScope.currTitle = $state.current.title;
+    $rootScope.pageTitle = function() {
+      var title = $rootScope.app.name + ' - ' + ($rootScope.currTitle || $rootScope.app.description);
+      document.title = title;
+      console.log('title====='+title);
+      return title;
+    };
+
 
 }]);
 
@@ -83,17 +126,18 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
     })
     .state('page.index', {
         url: '/index',
-        title: "index",
+        title: "首页",
         templateUrl: 'app/pages/index.html'
     })
     .state('page.order', {
         url: '/order',
-        title: "order",
-        templateUrl: 'app/pages/order.html'
+        title: "我的订单",
+        templateUrl: 'app/pages/order.html',
+        resolve: helper.resolveFor('iScroll')
     })
     .state('page.myinfo', {
         url: '/myinfo',
-        title: "myinfo",
+        title: "我的",
         templateUrl: 'app/pages/myinfo.html'
     })
     .state('page.login', {
@@ -117,25 +161,62 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
         templateUrl: 'app/pages/wantmn.html'
     })
     .state('wantmn.chosePost', {
-        url: '/chosePost',
+        url: '/chosePost/:id',
         title: "选择岗位",
-        templateUrl: 'app/pages/chosePost.html'
+        templateUrl: 'app/pages/wmn_chosePost.html',
+        resolve: helper.resolveFor('iScroll')
     })
     .state('wantmn.selectAddress', {
         url: '/selectAddress',
         title: "选择地址",
-        templateUrl: 'app/pages/selectAddress.html'
+        templateUrl: 'app/pages/wmn_selectAddress.html'
     })
     .state('wantmn.manageAddress', {
         url: '/manageAddress',
         title: "地址管理",
-        templateUrl: 'app/pages/manageAddress.html'
+        templateUrl: 'app/pages/wmn_manageAddress.html'
     })
     .state('wantmn.peopleTime', {
         url: '/peopleTime',
         title: "选择时间",
-        templateUrl: 'app/pages/peopleTime.html',
+        templateUrl: 'app/pages/wmn_peopleTime.html',
         resolve: helper.resolveFor('aui-calendar')
+    })
+    .state('wantmn.confirmorder', {
+        url: '/confirmorder',
+        title: "确定订单",
+        templateUrl: 'app/pages/wmn_confirmorder.html'
+    })
+    .state('wantmn.changePeople', {
+        url: '/changePeople',
+        title: "选择牛人",
+        templateUrl: 'app/pages/wmn_changePeople.html'
+    })
+    .state('wantmn.toPay', {
+        url: '/toPay',
+        title: "确认支付",
+        templateUrl: 'app/pages/wmn_toPay.html'
+    })
+    .state('wantmn.payCallback', {
+        url: '/payCallback',
+        title: "预约状态",
+        templateUrl: 'app/pages/wmn_payCallback.html'
+    })
+    .state('orderdetail', {
+        url: '/orderdetail',
+        title: "订单详情",
+        templateUrl: 'app/pages/order-detail.html'
+    })
+    .state('orderdetail.status', {
+        url: '/status',
+        title: "订单状态",
+        templateUrl: 'app/pages/order-detail-status.html',
+        resolve: helper.resolveFor('iScroll')
+    })
+    .state('orderdetail.info', {
+        url: '/info',
+        title: "订单信息",
+        templateUrl: 'app/pages/order-detail-info.html'
     })
     .state('page.404', {
         url: '/404',
@@ -221,7 +302,8 @@ App
       'animate':            ['vendor/animate.css/animate.min.css'],
       'aui-calendar':       ['vendor/aui-calendar/aui-calendar.css',
                              'vendor/aui-calendar/aui-calendar.js',
-                             'vendor/aui-calendar/aui-tap.js']
+                             'vendor/aui-calendar/aui-tap.js'],
+      'iScroll':            ['vendor/iScroll/iScroll.js']
      
     },
     // Angular based script (use the right module name)
@@ -314,6 +396,132 @@ App.controller('RegisterFormController', ['$scope', '$http', '$state', function(
 }]);
 
 /**=========================================================
+ * Module: main.js
+ * Main Application Controller
+ =========================================================*/
+
+App.controller('AppController',
+  ['$rootScope', '$scope', '$state',  '$window', '$localStorage', '$timeout', 
+  function($rootScope, $scope, $state, $window, $localStorage, $timeout) {
+    "use strict";
+
+ 
+
+  
+
+
+    // iPad may presents ghost click issues
+    // if( ! browser.ipad )
+      // FastClick.attach(document.body);
+
+   
+   
+    // cancel click event easily
+    $rootScope.cancel = function($event) {
+      $event.stopPropagation();
+    };
+
+}]);
+
+/**
+ * 
+ * @authors Zhou Guanqing (essamjo@163.com)
+ * @date    2016-03-29 15:12:48
+ * @version $Id$
+ */
+
+
+App.controller('orderDetailController', ['$scope', '$http', '$state', function($scope, $http, $state) {
+
+    $scope.$parent.myScrollOptions = {
+        'wrapper': {
+            snap: false,
+            click: true,
+            onScrollStart:function(){
+                alert('start scroll');
+            },
+            onScrollEnd: function ()
+            {
+                alert('finshed scrolling wrapper');
+        }},
+    };
+
+}]);
+
+/**
+ * 
+ * @authors Zhou Guanqing (essamjo@163.com)
+ * @date    2016-03-28 15:51:31
+ * @version $Id$
+ */
+
+App.controller('orderListController', ['$scope', '$http', '$state', function($scope, $http, $state) {
+
+    $scope.$parent.myScrollOptions = {
+        'wrapper': {
+            snap: false,
+            click: true,
+            onScrollEnd: function ()
+            {
+                alert('finshed scrolling wrapper');
+        }},
+    };
+    console.log('orderListController');
+}]);
+
+/**
+ * 
+ * @authors Zhou Guanqing (essamjo@163.com)
+ * @date    2016-03-31 16:17:30
+ * @version $Id$
+ */
+
+App.controller('wantmnController', ['$scope', '$http', '$state', function($scope, $http, $state) {
+      
+    $scope.$parent.myScrollOptions = {
+        'wrapper': {
+            snap: false,
+            click: true,
+            onScrollEnd: function ()
+            {
+                alert('finshed scrolling wrapper');
+        }},
+    };
+
+}]);
+
+App.controller('postController', ['$scope', '$http', '$state','$stateParams', function($scope, $http, $state, $stateParams) {
+
+     
+    console.log($stateParams.id);   
+    $scope.loadCategory = function() {
+
+      var categoryJson = 'server/category.json',
+          categoryURL  = categoryJson + '?v=' + (new Date().getTime()); // jumps cache
+      $http.get(categoryURL)
+        .success(function(items) {
+           $scope.categoryItems = items;
+           console.log(items);
+        })
+        .error(function(data, status, headers, config) {
+          alert('Failure loading menu');
+        });
+     };
+
+     $scope.loadCategory();
+     console.log('$stateParams.id==='+$stateParams.id);
+     if($stateParams.id == null || $stateParams.id == ''){
+         //if($stateParams.id in $scope.categoryItems){
+            console.log('id is null');
+            $('.postFirst li').addClass('cur')
+         //}
+     }else{
+        console.log('id is not null');
+     }
+}]);
+
+
+/**=========================================================
  * Module: helpers.js
  * Provides helper functions for routes definition
  =========================================================*/
@@ -324,7 +532,7 @@ App.provider('RouteHelpers', ['APP_REQUIRES', function (appRequires) {
   // Set here the base of the relative path
   // for all app views
   this.basepath = function (uri) {
-    return 'app/views/' + uri;
+    return 'app/pages/' + uri;
   };
 
   // Generates a resolve object by passing script names

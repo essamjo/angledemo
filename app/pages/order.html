@@ -1,1 +1,152 @@
-订单列表
+<header class="aui-bar aui-bar-nav aui-bar-warning">
+    <a class="aui-pull-left" ui-sref='wantmn.selectAddress'>
+        <span class="aui-iconfont aui-icon-left"></span>返回
+    </a>
+    <div class="aui-title">我的订单</div>
+</header>
+<div class="my-content" ng-controller="orderListController" >
+    <div id="wrapper" ng-iscroll='wrapper' ng-iscroll-click='true'>
+        <div class="mylist">
+            <ul class="aui-list-view">
+                <li class="aui-list-view-cell aui-img">
+                    <span class="aui-pull-right aui-text-warning">
+                        待审核
+                    </span>
+                    <div class="aui-img-body">
+                        支付全款1
+                    </div>
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>腾讯大厦 15楼205
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>2016-03-25 晚上9点上门
+                </li>
+                <li class="aui-list-view-cell">
+                    <div class="aui-btn aui-btn-success aui-btn-outlined aui-pull-right ">取消订单</div>
+                    <div class="aui-btn aui-btn-success aui-btn-outlined" ui-sref="orderdetail.status">详情</div>
+                </li>
+            </ul>
+            <ul class="aui-list-view">
+                <li class="aui-list-view-cell aui-img">
+                    <span class="aui-pull-right aui-text-warning">
+                        待审核
+                    </span>
+                    <div class="aui-img-body">
+                        支付全款2
+                    </div>
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>腾讯大厦 15楼205
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>2016-03-25 晚上9点上门
+                </li>
+                <li class="aui-list-view-cell">
+                    <div class="aui-btn aui-btn-success aui-btn-outlined aui-pull-right ">取消订单</div>
+                </li>
+            </ul>
+
+            <ul class="aui-list-view">
+                <li class="aui-list-view-cell aui-img">
+                    <span class="aui-pull-right aui-text-warning">
+                        待审核
+                    </span>
+                    <div class="aui-img-body">
+                        支付全款3
+                    </div>
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>腾讯大厦 15楼205
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>2016-03-25 晚上9点上门
+                </li>
+                <li class="aui-list-view-cell">
+                    <div class="aui-btn aui-btn-success aui-btn-outlined aui-pull-right ">取消订单</div>
+                </li>
+            </ul>
+
+            <ul class="aui-list-view">
+                <li class="aui-list-view-cell aui-img">
+                    <span class="aui-pull-right aui-text-warning">
+                        待审核
+                    </span>
+                    <div class="aui-img-body">
+                        支付全款4
+                    </div>
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>腾讯大厦 15楼205
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>2016-03-25 晚上9点上门
+                </li>
+                <li class="aui-list-view-cell">
+                    <div class="aui-btn aui-btn-success aui-btn-outlined aui-pull-right ">取消订单</div>
+                </li>
+            </ul>
+
+            <ul class="aui-list-view">
+                <li class="aui-list-view-cell aui-img">
+                    <span class="aui-pull-right aui-text-warning">
+                        待审核
+                    </span>
+                    <div class="aui-img-body">
+                        支付全款5
+                    </div>
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>腾讯大厦 15楼205
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>2016-03-25 晚上9点上门
+                </li>
+                <li class="aui-list-view-cell">
+                    <div class="aui-btn aui-btn-success aui-btn-outlined aui-pull-right ">取消订单</div>
+                </li>
+            </ul>
+
+            <ul class="aui-list-view">
+                <li class="aui-list-view-cell aui-img">
+                    <span class="aui-pull-right aui-text-warning">
+                        待审核
+                    </span>
+                    <div class="aui-img-body">
+                        支付全款6
+                    </div>
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>腾讯大厦 15楼205
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>2016-03-25 晚上9点上门
+                </li>
+                <li class="aui-list-view-cell">
+                    <div class="aui-btn aui-btn-success aui-btn-outlined aui-pull-right ">取消订单</div>
+                </li>
+            </ul>
+
+            <ul class="aui-list-view">
+                <li class="aui-list-view-cell aui-img">
+                    <span class="aui-pull-right aui-text-warning">
+                        待审核
+                    </span>
+                    <div class="aui-img-body">
+                        支付全款7
+                    </div>
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>腾讯大厦 15楼205
+                </li>
+                <li class="aui-list-view-cell">
+                    <i class="aui-iconfont aui-icon-edit aui-bg-info"></i>2016-03-25 晚上9点上门
+                </li>
+                <li class="aui-list-view-cell">
+                    <div class="aui-btn aui-btn-success aui-btn-outlined aui-pull-right ">取消订单</div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
