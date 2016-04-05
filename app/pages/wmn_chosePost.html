@@ -12,13 +12,8 @@
         </div>
         <div class="secPostCnt">
             <div  id="wrapper" ng-iscroll='wrapper'>
-            	<div class="secPost">
-            		<div class="aui-btn aui-btn-outlined" >{{item.text}}</div>
-            		<div class="aui-btn aui-btn-outlined" ui-sref="wantmn.selectAddress">C++</div>
-            		<div class="aui-btn aui-btn-outlined">C#</div>
-            		<div class="aui-btn aui-btn-outlined">搜索算法</div>
-            		<div class="aui-btn aui-btn-outlined">.NET</div>
-                    <div class="aui-btn aui-btn-outlined">Java</div>
+            	<div class="secPost">                    
+            		<div class="aui-btn aui-btn-outlined" ng-repeat="sc in jobs" ng-click="toSelectAddress(sc)">{{sc.text}}</div>
             	</div>
             </div>
         </div>

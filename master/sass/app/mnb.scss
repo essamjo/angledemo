@@ -1,13 +1,5 @@
-/* ========================================================================
-   Component: mnb.less
- ========================================================================== */
-
-// Variables
-// ========================================================================
-iframe{border: 0 none;}
 .my-content{padding-bottom: 65px;}
 
-//个人中心
 .my-header {
     background: url('../img/mybg.png') no-repeat;
     background-size: cover;
@@ -57,15 +49,16 @@ iframe{border: 0 none;}
     filter:Alpha(opacity=50);
     background:rgba(255, 255, 255, 0.2) none repeat scroll 0 0 !important;
 }
-
-// 样式重写
 .aui-list-view-cell {
     line-height: 26px;
 }
 
 .whitebgbox{background: #fff;}
 
-
+.secPost .aui-btn{margin-top: 5px;margin-bottom: 5px;}
+.postFirst{height: 100%;}
+.postFirst .cur{border-left: 3px solid #00BEAF;color: #00BEAF;}
+.secPost{padding-left: 10px;}
 
 .toselectDate{text-align: center;padding: 10px;}
 .toselectDate .aui-btn-block{padding: 10px 0;margin-top: 10px;}
@@ -122,41 +115,12 @@ iframe{border: 0 none;}
     width:100%;
     overflow:auto;
 }
-.order-detail{position: relative;}
-.twoheadwrapper #wrapper{top: 100px}
-.mnb-timeline{padding-right: 20px;}
-.mnb-timeline > li > .aui-time-label{width:30px;border-radius: 50%;left: 18px;}
 
+// Phones portrait and smaller */
+@media (max-width: $mq-mobile) {
 
+    // Fit in small screen
 
-.wrappost{overflow: hidden;background: #fff;}
+   
 
-.secPost .aui-btn{margin: 5px;}
-.postFirst{width: 33.33333333%;position: fixed;height: 100%;background: #f4f4f4;}
-.postFirst li{padding: 10px;position: relative;}
-.postFirst li:after{
-    display: block;
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    -webkit-transform-origin: 0 0;
-    -webkit-transform: scale(1);
-    pointer-events: none;
-    border-bottom: 1px solid #c8c7cc;
 }
-@media screen and (-webkit-min-device-pixel-ratio:1.5) {
-    .postFirst li:after {
-        right: -100%;
-        bottom: -100%;
-        -webkit-transform: scale(0.5);
-    }
-}
-.postFirst .cur{border-left: 3px solid #00BEAF;color: #00BEAF; background: #fff;border-right-color: #fff;}
-
-.secPostCnt #wrapper{left: 33.33333333%; width: 66.66666667%; top: 0;background: #fff;bottom: 0;}
-.secPost{padding-left: 10px;}
-
-.addressbg{background: url(../img/addressbg.png) 0 0 repeat-x; background-size: auto 100%;}

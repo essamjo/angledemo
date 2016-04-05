@@ -65,14 +65,16 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
         resolve: helper.resolveFor('iScroll')
     })
     .state('wantmn.selectAddress', {
-        url: '/selectAddress',
+        url: '/selectAddress/:categoryid/:jobid/:id',
         title: "选择地址",
-        templateUrl: 'app/pages/wmn_selectAddress.html'
+        templateUrl: 'app/pages/wmn_selectAddress.html',
+        controller: 'wantmnStep2Controller'
     })
     .state('wantmn.manageAddress', {
         url: '/manageAddress',
         title: "地址管理",
-        templateUrl: 'app/pages/wmn_manageAddress.html'
+        templateUrl: 'app/pages/wmn_manageAddress.html',
+        controller: 'wantmnManageAddress'
     })
     .state('wantmn.peopleTime', {
         url: '/peopleTime',

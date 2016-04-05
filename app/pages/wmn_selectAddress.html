@@ -1,13 +1,27 @@
-<header class="aui-bar aui-bar-nav aui-bar-warning">
+<!-- <header class="aui-bar aui-bar-nav aui-bar-warning">
     <a class="aui-pull-left" ui-sref='wantmn.chosePost'>
         <span class="aui-iconfont aui-icon-left"></span>返回
     </a>
     <div class="aui-title">C++</div>
 </header>
-
-<ul class="aui-list-view aui-in" style="margin-top:10px;">
-    <li class="aui-list-view-cell">
-        <i class="aui-iconfont aui-icon-location" style="color:#ccc;"></i>请设置服务地址 <div class="aui-btn aui-btn-info aui-pull-right" ui-sref="wantmn.manageAddress">去设置</div>
+ -->
+<ul class="aui-user-view" style="margin-top:10px;">
+    <li class="aui-user-view-cell addressbg" ng-hide="hasAddress" ui-sref="wantmn.manageAddress">
+         <div class="aui-img-object aui-pull-left"><i class="aui-iconfont aui-icon-location" style="color:#ccc;"></i>  </div>
+                 
+         <div style="line-height:48px;">
+                <span>请设置服务地址</span><div class="aui-btn aui-btn-info aui-pull-right" style="margin-top:8px;">去设置</div>
+         </div>
+    </li>
+    <li class="aui-user-view-cell addressbg" ng-show="hasAddress" ng-click="toSelectAddress(defaultAddress)">
+        
+            <div class="aui-img-object aui-pull-left"><i class="aui-iconfont aui-icon-location" style="color:red;"></i>  </div>
+                 
+             <div class="aui-img-body  aui-arrow-right">
+                    <span>{{defaultAddress.buildingName}}</span>
+                    <p class='aui-ellipsis-1'>{{defaultAddress.address}}</p>
+             </div>
+         
     </li>
 </ul>
 

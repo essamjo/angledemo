@@ -83,7 +83,7 @@ App.run(["$rootScope", "$state", "$stateParams",  '$window', '$templateCache', f
         var $body = $('body')
         document.title = $state.current.title;
         // hack在微信等webview中无法修改document.title的情况
-         var $iframe = $('<iframe src="/favicon.ico"></iframe>').on('load', function() {
+         var $iframe = $('<iframe src="/favicon1.ico"></iframe>').on('load', function() {
            setTimeout(function() {
              $iframe.off('load').remove()
            }, 0)

@@ -6,5 +6,6 @@
   "bower_components/angular-touch/angular-touch.js",
   "bower_components/angular-animate/angular-animate.js",
   "bower_components/ngstorage/ngStorage.js",
+  "bower_components/ng-iScroll/src/ng-iscroll.min.js",
   "bower_components/oclazyload/dist/ocLazyLoad.js"
 ]

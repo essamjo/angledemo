@@ -1,19 +1,19 @@
-<header class="aui-bar aui-bar-nav aui-bar-warning">
+<!-- <header class="aui-bar aui-bar-nav aui-bar-warning">
     <a class="aui-pull-left" ui-sref='wantmn.selectAddress'>
         <span class="aui-iconfont aui-icon-left"></span>返回
     </a>
     <div class="aui-title">服务地址</div>
 </header>
-
+ -->
 
 
 <div class="aui-content" style="margin-top:10px;">
     <ul class="aui-user-view">
-        <li class="aui-user-view-cell aui-img">
-            <input class=" aui-radio aui-radio-info" type="radio" name="demo">
+        <li class="aui-user-view-cell aui-img" ng-repeat="item in addressItems" ng-click="selectAddressFn(item)">
+            <input class=" aui-radio aui-radio-info" ng-checked="item.id==defaultAddress.id" type="radio" name="serviceAddress">
             <div class="aui-img-body">
-                <span>腾讯大厦<em><i class="aui-iconfont aui-icon-location" style="color:#ccc;"></i>深圳</em></span>
-                <p class='aui-ellipsis-1'>深圳深南中路</p>
+                <span>{{item.buildingName}}<em style="margin-top:10px;"><i class="aui-iconfont aui-icon-location" style="color:#ccc;"></i>{{item.city}}</em></span>
+                <p class='aui-ellipsis-1'>{{item.address}}----{{defaultAddress.id}}</p>
             </div>
         </li>
     </ul>

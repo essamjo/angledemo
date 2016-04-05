@@ -241,7 +241,7 @@ gulp.task('watch', function() {
   gulp.watch(source.styles.watch,    ['styles:app', 'styles:app:rtl']);
   gulp.watch(source.styles.themes,   ['styles:themes']);
   gulp.watch(source.templates.views, ['templates:views']);
-  gulp.watch(source.templates.index, ['templates:index']);
+  //gulp.watch(source.templates.index, ['templates:index']);
 
   // a delay before triggering browser reload to ensure everything is compiled
   var livereloadDelay = 1500;
@@ -300,8 +300,8 @@ gulp.task('default', gulpsync.sync([
 gulp.task('assets',[
           'scripts:app',
           'styles:app',
-          'styles:app:rtl',
-          'styles:themes',
+         // 'styles:app:rtl',
+         // 'styles:themes',
           'templates:index',
           'templates:views'
         ]);
