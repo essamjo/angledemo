@@ -238,7 +238,8 @@ gulp.task('watch', function() {
   $.livereload.listen();
 
   gulp.watch(source.scripts,         ['scripts:app']);
-  gulp.watch(source.styles.watch,    ['styles:app', 'styles:app:rtl']);
+  gulp.watch(source.styles.watch,    ['styles:app']);
+  //gulp.watch(source.styles.watch,    ['styles:app', 'styles:app:rtl']);
   gulp.watch(source.styles.themes,   ['styles:themes']);
   gulp.watch(source.templates.views, ['templates:views']);
   //gulp.watch(source.templates.index, ['templates:index']);
