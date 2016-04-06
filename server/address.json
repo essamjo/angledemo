@@ -1,0 +1,21 @@
+[
+ 
+  {
+    "buildingName": "腾讯大厦",
+    "id": "01",
+    "defaultaddress":1,
+    "city":"深圳",
+    "address":"深圳市南山区深南大道239号23楼2302",
+    "latitude":48.55855,
+    "longitude": 105.25255
+  },
+  {
+    "buildingName": "宝能源大厦",
+    "id": "02",
+    "defaultaddress":0,
+    "city":"深圳",
+    "address":"深圳市宝安区深南大道239号23楼2302",
+    "latitude":48.55855,
+    "longitude": 105.25255
+  }
+]
