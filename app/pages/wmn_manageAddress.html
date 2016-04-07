@@ -10,17 +10,26 @@
 <div class="aui-content" style="margin-top:10px;">
     <ul class="aui-user-view">
         <li class="aui-user-view-cell aui-img" ng-repeat="item in addressItems" ng-click="selectAddressFn(item)">
-            <input class=" aui-radio aui-radio-info" ng-checked="item.id==defaultAddress.id" type="radio" name="serviceAddress">
+            <input class=" aui-radio aui-radio-info" ng-checked="item.id==_selectedItem" type="radio" name="serviceAddress">
             <div class="aui-img-body">
-                <span>{{item.buildingName}}<em style="margin-top:10px;"><i class="aui-iconfont aui-icon-location" style="color:#ccc;"></i>{{item.city}}</em></span>
-                <p class='aui-ellipsis-1'>{{item.address}}----{{defaultAddress.id}}</p>
+                <span>{{item.buildingName}}<em style="margin-top:10px;"><i class="aui-iconfont aui-icon-location aui-text-primary"></i>{{item.city}}</em></span>
+                <p class='aui-ellipsis-1'>{{item.address}}</p>
             </div>
         </li>
     </ul>
 </div>
 
 <ul class="aui-list-view aui-in">
-    <li class="aui-list-view-cell aui-text-center">
-        <i class="aui-iconfont aui-icon-roundadd" style="color:#ccc;"></i>添加服务地址
+    <li class="aui-list-view-cell aui-text-center" ng-click="toAddAddress()">
+        <i class="aui-iconfont aui-icon-roundadd aui-text-primary"></i>添加服务地址
     </li>
 </ul>
+
+<script>
+      // 百度地图API功能
+    var map = new BMap.Map("baidumap");    // 创建Map实例
+    map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
+    map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+    map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+</script>

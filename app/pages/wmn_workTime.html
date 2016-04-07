@@ -1,0 +1,44 @@
+<div class="my-content">
+    <!-- <header class="aui-bar aui-bar-nav aui-bar-warning">
+        <a class="aui-pull-left" ui-sref='wantmn.chosePost'>
+            <span class="aui-iconfont aui-icon-left"></span>返回
+        </a>
+        <div class="aui-title">服务时间</div>
+    </header> -->
+
+    <ul class="aui-user-view" style="margin-top:10px;">
+        <li class="aui-user-view-cell aui-img mnb-view-cell">
+            <div class="aui-img-object aui-pull-left mnb-img-object"><i class="aui-iconfont aui-icon-like aui-text-primary" style="font-size:18px;"></i>  </div>
+            <div class="aui-img-body aui-arrow-right ">
+                <div class="aui-pull-left mnb-view-body">
+                    <span>预计需要几天</span>
+                    <p class='aui-ellipsis-1'>每8小时计为一天</p>                    
+                </div>
+                
+                <select name="" class="aui-select  aui-pull-right" id="" style="float:right;width:auto;" ng-model="worktime"  ng-options="item.id as item.value for item in workTimeItems">
+                </select>
+            </div>
+        </li>
+    </ul>
+    <ul class="aui-list-view" style="margin-top:10px;">
+        <li class="aui-list-view-cell mnb-view-cell">
+            <a class="aui-arrow-right">
+                <i class="aui-iconfont aui-icon-like aui-text-primary" style="padding:0;"></i>开始工作日期
+                <span class="aui-badge-nobg"><input type="datetime-local" class="aui-text-right mnb-input" ng-model="workStartDate"  placeholder=""/></span>
+            </a>
+        </li>
+    </ul>
+    <div class="whitebgbox aui-border-t aui-border-b" style="margin-top:10px;margin-bottom:10px;">
+        <div class="aui-padded-10">
+            工作时段
+            <p>具体工作时段，以及有特殊情况的，可与牛人协商</p>
+        </div>
+        <div class="mnb-selectItem worktimewrap">
+            <span class="aui-border aui-border-radius selected" mnb-data={{item.id}}  checkfn ng-repeat="item in worktimetypeItems" >{{item.value}}<i class="aui-iconfont aui-icon-check"></i></span>
+        </div>    
+    </div>
+
+    <footer class="aui-nav" id="aui-footer">
+        <div class="aui-btn aui-btn-info aui-btn-block noborderradius" ng-click="toOrder()">确定服务时间</div>
+    </footer>
+</div>    

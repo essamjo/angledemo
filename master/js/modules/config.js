@@ -68,19 +68,33 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
         url: '/selectAddress/:categoryid/:jobid/:id',
         title: "选择地址",
         templateUrl: 'app/pages/wmn_selectAddress.html',
-        controller: 'wantmnStep2Controller'
+        controller: 'selectAddressController'
     })
     .state('wantmn.manageAddress', {
         url: '/manageAddress',
         title: "地址管理",
         templateUrl: 'app/pages/wmn_manageAddress.html',
-        controller: 'wantmnManageAddress'
+        controller: 'wantmnManageAddressController'
     })
-    .state('wantmn.peopleTime', {
-        url: '/peopleTime',
+    .state('wantmn.addAddress', {
+        url: '/addAddress',
+        title: "增加地址",
+        templateUrl: 'app/pages/addAddress.html',
+        resolve: helper.resolveFor('baiduMap'),
+        controller:'addAddressController'
+    })
+    .state('wantmn.workType', {
+        url: '/workType',
+        title: "工作类型",
+        templateUrl: 'app/pages/wmn_workType.html',
+        resolve: helper.resolveFor('aui-calendar'),
+        controller:'wantmnWorTypeController'
+    })
+    .state('wantmn.workTime', {
+        url: '/workTime',
         title: "选择时间",
-        templateUrl: 'app/pages/wmn_peopleTime.html',
-        resolve: helper.resolveFor('aui-calendar')
+        templateUrl: 'app/pages/wmn_workTime.html',
+        controller:'workTimeController'
     })
     .state('wantmn.confirmorder', {
         url: '/confirmorder',

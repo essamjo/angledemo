@@ -9,7 +9,7 @@ App.service('wantmnData', function(){
     this.formdata={
         "categoryId" : null, //工作分类
         "jobId" : null, //工作岗位
-        "workType" : null, //工作类型：驻场 or 远程
+        "workType" : 1, //工作类型：驻场 or 远程
         "workAddress" : null,//工作地点: 地址id
         "workTime" : null, //工作时长
         "workTimeType" : null,//工作时间段
@@ -26,7 +26,7 @@ App.service('wantmnData', function(){
     this.destoryFormdata = function(){
         this.formdata.categoryId=null;
         this.formdata.jobId=null;
-        this.formdata.workType=null;
+        this.formdata.workType=1;
         this.formdata.workAddress=null;
         this.formdata.workTime=null;
         this.formdata.workTimeType=null;

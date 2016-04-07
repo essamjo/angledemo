@@ -34,7 +34,8 @@ App
       'aui-calendar':       ['vendor/aui-calendar/aui-calendar.css',
                              'vendor/aui-calendar/aui-calendar.js',
                              'vendor/aui-calendar/aui-tap.js'],
-      'iScroll':            ['vendor/iScroll/iScroll.js']
+      'iScroll':            ['vendor/iScroll/iScroll.js'],
+      'baiduMap':           ['http://api.map.baidu.com/api?v=2.0&ak=TriQ4b2l5G4RdNrDDTnESIIXQfyNHIPD']
      
     },
     // Angular based script (use the right module name)

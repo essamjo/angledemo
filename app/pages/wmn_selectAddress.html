@@ -5,9 +5,17 @@
     <div class="aui-title">C++</div>
 </header>
  -->
-<ul class="aui-user-view" style="margin-top:10px;">
+<ul class="aui-list-view" style="margin-top:10px;">
+    <li class="aui-list-view-cell" ng-click="toSelectWorktype()">
+        <a class="aui-arrow-right">
+        工作类型
+        <span class="aui-badge-nobg">{{worktypetext}}</span>
+        </a>
+    </li>
+</ul>
+<ul class="aui-user-view" style="margin-top:10px;" ng-show="worktype==1">
     <li class="aui-user-view-cell addressbg" ng-hide="hasAddress" ui-sref="wantmn.manageAddress">
-         <div class="aui-img-object aui-pull-left"><i class="aui-iconfont aui-icon-location" style="color:#ccc;"></i>  </div>
+         <div class="aui-img-object aui-pull-left"><i class="aui-iconfont aui-icon-location aui-text-primary"></i>  </div>
                  
          <div style="line-height:48px;">
                 <span>请设置服务地址</span><div class="aui-btn aui-btn-info aui-pull-right" style="margin-top:8px;">去设置</div>
@@ -15,7 +23,7 @@
     </li>
     <li class="aui-user-view-cell addressbg" ng-show="hasAddress" ng-click="toSelectAddress(defaultAddress)">
         
-            <div class="aui-img-object aui-pull-left"><i class="aui-iconfont aui-icon-location" style="color:red;"></i>  </div>
+            <div class="aui-img-object aui-pull-left"><i class="aui-iconfont aui-icon-location aui-text-primary"></i>  </div>
                  
              <div class="aui-img-body  aui-arrow-right">
                     <span>{{defaultAddress.buildingName}}</span>
@@ -27,6 +35,6 @@
 
 <div class="whitebgbox toselectDate">
     你希望什么时候服务
-        <div class="aui-btn aui-btn-primary aui-btn-block" ui-sref="wantmn.peopleTime">选择服务时间</div>
+        <div class="aui-btn aui-btn-primary aui-btn-block" ng-click="toSelectWorkTime()">选择服务时间</div>
     
 </div>

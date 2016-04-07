@@ -75,8 +75,9 @@ App.controller('postController', ['$scope', '$http', '$state','$stateParams','wa
 }]);
 
 
-App.controller('wantmnStep2Controller', ['$scope', '$http', '$state','$stateParams','wantmnData',  function($scope, $http, $state, $stateParams,wantmnData) {
-      
+App.controller('selectAddressController', ['$scope', '$http', '$state','$stateParams','wantmnData',  function($scope, $http, $state, $stateParams,wantmnData) {
+    
+    $scope.worktype=wantmnData.formdata.workType;  
     $scope.hasAddress=false;
     $scope.loadAddress = function(){
         var addressJson = 'server/address.json',
@@ -86,71 +87,71 @@ App.controller('wantmnStep2Controller', ['$scope', '$http', '$state','$statePara
             $scope.addressItems = items;   
             if(items.length>0){
                 $scope.hasAddress=true;
-            }else{
+            }
                 angular.forEach(items, function(data){
-                        if(data.defaultaddress == 1 && wantmnData.formdata.workAddress == null){                           
+                        if(data.defaultaddress == 1 && wantmnData.formdata.workAddress == null){        
+                            console.log("默认地址")                   
                             $scope.defaultAddress=data;
                         }else{
                             if(data.id==wantmnData.formdata.workAddress){
+                                console.log("选择其他地址")
                                 $scope.defaultAddress=data;                                
                             }
                         }
                 });
-            }      
+               
         })
         .error(function(data, status, headers, config) {
           alert('Failure loading address');
         });
     }
 
-    $scope.loadAddress();
+    $scope.loadAddress();    
 
-    
-
-    $scope.selectAddressFn = function (i){
-        $scope.defaultAddress=i;
-        //$scope.$broadcast("defaultAddress", id);
-        $state.go('wantmn.selectAddress',{categoryid:wantmnData.formdata.categoryId,jobid:wantmnData.formdata.jobId,id:i.id});
+   
+    if(wantmnData.formdata.workType==1){
+        $scope.worktypetext= "驻场"
+    }else{
+        $scope.worktypetext= "远程"
     }
+    
+      
+    $scope.toSelectAddress = function (item){
         
-    $scope.toSelectAddress = function (id){
-        
-        $scope.defaultAddress=id;
-        //$scope.$broadcast("defaultAddress", id);
-        console.log($scope.defaultAddress);
+        $scope.defaultAddress=item;
+        wantmnData.formdata.workAddress=item.id;      
         $state.go('wantmn.manageAddress');
+    }
+
+    $scope.toSelectWorktype = function(){
+        $state.go('wantmn.workType');
+    }
+
+    $scope.toSelectWorkTime = function(){
+        if(!$scope.hasAddress){
+            return
+        }else{
+            $state.go('wantmn.workTime');
+        }
     }
 
 }]);
 
 
-App.controller('wantmnManageAddress', ['$scope', '$http', '$state','$stateParams','wantmnData',  function($scope, $http, $state, $stateParams,wantmnData) {
+App.controller('wantmnManageAddressController', ['$scope', '$http', '$state','$stateParams','wantmnData',  function($scope, $http, $state, $stateParams,wantmnData) {
       
-    
+    $scope._selectedItem=wantmnData.formdata.workAddress;
     $scope.loadAddress = function(){
         var addressJson = 'server/address.json',
             addressURL  = addressJson + '?v=' + (new Date().getTime()); // jumps cache
         $http.get(addressURL)
         .success(function(items) {            
-            $scope.addressItems = items;   
-            if(items.length>0){
-                $scope.hasAddress=true;
-            }else{
-                angular.forEach(items, function(data){
-                        if($state.current.name=='wantmn.selectAddress' && ( $stateParams.id == null || $stateParams.id == '')){
-                            if(data.defaultaddress == 1){
-                                $scope.defaultAddress=data;
-                                //$scope.$broadcast("defaultAddress", data);
-                            }
-                        }else{
-                            if(data.id==$stateParams.id){
-                                $scope.defaultAddress=data;
-                                //$scope.$broadcast("defaultAddress", data);
-                                
-                            }
+            $scope.addressItems = items; 
+            angular.forEach(items, function(data){
+                        if(data.defaultaddress == 1 && wantmnData.formdata.workAddress == null){        
+                            $scope._selectedItem=data.id
                         }
                 });
-            }      
         })
         .error(function(data, status, headers, config) {
           alert('Failure loading address');
@@ -159,5 +160,80 @@ App.controller('wantmnManageAddress', ['$scope', '$http', '$state','$stateParams
 
     $scope.loadAddress();
    
+    $scope.selectAddressFn = function (i){
+        $scope.defaultAddress=i;
+        //$scope.$broadcast("defaultAddress", id);
+        wantmnData.formdata.workAddress=i.id;
+        $state.go('wantmn.selectAddress',{categoryid:wantmnData.formdata.categoryId,jobid:wantmnData.formdata.jobId,id:i.id});
+    }
+    $scope.toAddAddress = function(){        
+            $state.go('wantmn.addAddress');
+    }
+
+}]);
+
+
+
+App.controller('wantmnWorTypeController', ['$scope', '$http', '$state','$stateParams','wantmnData',  function($scope, $http, $state, $stateParams,wantmnData) {
+    $scope.worktypeItems=[{
+        id:1,
+        text:"驻场"
+    },{
+        id:2,
+        text:"远程"
+    }
+    ];
+    $scope._selectedItem=wantmnData.formdata.workType;
+    $scope.selectworktype=function(item){
+        wantmnData.formdata.workType=item.id;
+        console.log(wantmnData.formdata.workType);
+        $state.go('wantmn.selectAddress',{categoryid:wantmnData.formdata.categoryId,jobid:wantmnData.formdata.jobId})
+    }
+
+}]);
+
+
+App.controller('addAddressController', ['$scope', '$http', '$state','$stateParams','wantmnData',  function($scope, $http, $state, $stateParams,wantmnData) {
+      
+
+}]);
+
+App.controller('workTimeController', ['$scope', '$http', '$state','$stateParams','wantmnData',  function($scope, $http, $state, $stateParams,wantmnData) {
+
+    $scope.worktime=1;
+    $scope.workStartDate=null;
+    $scope.choseArr=[];//选择的时间段 id 数组
+
+    //创建工作天数
+    var arr={};
+    $scope.workTimeItems=[]; 
+    for(i=1;i<31;i++){
+        arr={"id":i,"value":i+"天"};
+        $scope.workTimeItems.push(arr)
+    };
+
+    //工作时段
+    $scope.worktimetypeItems=[
+        {"id":1,"value":"工作日白天"},
+        {"id":2,"value":"工作日晚上"},
+        {"id":3,"value":"周末白天"},
+        {"id":4,"value":"周末晚上"}
+        ]
+  
+    
+    $scope.toOrder = function(){
+        $scope.choseArr=[];
+        angular.forEach(angular.element('.selected'),function(data){
+            
+            $scope.choseArr.push(angular.element(data).attr('mnb-data'));
+
+        })
+        console.log($scope.choseArr)
+        wantmnData.formdata.workStartDate=$scope.workStartDate;
+        wantmnData.formdata.workTimeType=$scope.choseArr;
+        wantmnData.formdata.workTime=$scope.worktiem;
+        console.log(wantmnData.formdata)
+    }
+
 
 }]);
